@@ -4,6 +4,11 @@ class mpuppet {
     'Solaris' => '/opt/local/sbin',
   }
 
+  $cron_d = $facts['os']['family'] ? {
+    'Debian'  => '/etc/cron.d',
+    'Solaris' => '/etc/cron.d',
+  }
+
   file { "${user_sbin}/mpuppet-apply":
     owner  => 'root',
     group  => 'root',
@@ -23,5 +28,14 @@ class mpuppet {
     group  => 'root',
     mode   => '0755',
     source => "puppet:///modules/${module_name}/mpuppet-run.sh",
+  }
+
+  $minute = fqdn_rand(30)
+
+  file { "${cron_d}/mpuppet":
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => template("${module_name}/mpuppet_cron.erb"),
   }
 }
