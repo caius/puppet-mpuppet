@@ -1,10 +1,4 @@
-# Bootstrap puppet apply
-#
-# Workflow of this is:
-#   * mpuppet-fetch updates the git repo from origin
-#   * mpuppet-apply applies the git repo as a puppet run
-#   * mpuppet-run calls mpuppet-fetch then mpuppet-apply
-class puppet_apply {
+class mpuppet {
   $user_sbin = $facts['os']['family'] ? {
     'Debian'  => '/usr/local/sbin',
     'Solaris' => '/opt/local/sbin',
