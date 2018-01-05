@@ -18,4 +18,4 @@ readonly PUPPET="/opt/puppetlabs/bin/puppet"
 
 (cd ${PUPPET_DIR}; /opt/puppetlabs/puppet/bin/librarian-puppet install)
 
-$PUPPET apply "$@" $PUPPET_DIR
+$PUPPET apply "$@" "$PUPPET_DIR/manifests"
