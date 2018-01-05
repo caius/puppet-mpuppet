@@ -22,6 +22,5 @@ if [[ ! -f $BRANCH_FILE ]]; then
   exit 1
 fi
 
-export GIT_DIR="${PUPPET_DIR}"
-git fetch origin
-git checkout -fq "$(cat $BRANCH_FILE)"
+git -C "${PUPPET_DIR}" fetch origin
+git -C "${PUPPET_DIR}" checkout -fq "origin/$(cat $BRANCH_FILE)"
