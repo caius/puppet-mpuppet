@@ -5,7 +5,7 @@
 #   * mpuppet-apply applies the git repo as a puppet run
 #   * mpuppet-run calls mpuppet-fetch then mpuppet-apply
 class puppet_apply {
-  $user_sbin = $::os::family ? {
+  $user_sbin = $facts['os']['family'] ? {
     'Debian'  => '/usr/local/sbin',
     'Solaris' => '/opt/local/sbin',
   }
