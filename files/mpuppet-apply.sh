@@ -16,6 +16,8 @@ exec 1> >(logger -s -t "$(basename "$0")") 2>&1
 readonly PUPPET_DIR="/etc/puppetlabs/code/environments/production"
 readonly PUPPET="/opt/puppetlabs/bin/puppet"
 
+export PATH=/opt/puppetlabs/bin:$PATH
+
 (cd ${PUPPET_DIR}; /opt/puppetlabs/puppet/bin/librarian-puppet install)
 
 $PUPPET apply "$@" "$PUPPET_DIR/manifests"
