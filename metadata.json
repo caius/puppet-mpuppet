@@ -7,5 +7,5 @@
   "source": "https://github.com/caius/puppet-mpuppet",
   "project_page": "https://github.com/caius/puppet-mpuppet",
   "issues_url": "https://github.com/caius/puppet-mpuppet/issues",
-  "dependencies": [],
+  "dependencies": []
 }
