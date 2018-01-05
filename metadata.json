@@ -1,0 +1,11 @@
+{
+  "name": "caius-mpuppet",
+  "version": "0.1.0",
+  "author": "caius",
+  "summary": "Manage scripts to run masterless puppet",
+  "license": "Apache-2.0",
+  "source": "https://github.com/caius/puppet-mpuppet",
+  "project_page": "https://github.com/caius/puppet-mpuppet",
+  "issues_url": "https://github.com/caius/puppet-mpuppet/issues",
+  "dependencies": [],
+}
