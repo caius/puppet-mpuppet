@@ -33,9 +33,9 @@ class mpuppet {
   $minute = fqdn_rand(30)
 
   file { "${cron_d}/mpuppet":
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => template("${module_name}/mpuppet_cron.erb"),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template("${module_name}/mpuppet_cron.erb"),
   }
 }
