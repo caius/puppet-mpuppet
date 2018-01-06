@@ -11,7 +11,7 @@ set -o nounset
 set -o pipefail
 set -o noclobber
 
-exec 1> >(tee >(logger -t $(basename $0))) 2>&1
+exec 1>| >(tee >(logger -t $(basename $0))) 2>&1
 
 if [[ -x /opt/puppetlabs/bin/puppet ]]; then
   # Debian-esque installed puppet from puppetlabs deb release
