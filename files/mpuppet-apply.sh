@@ -13,12 +13,12 @@ set -o noclobber
 
 exec 1>| >(tee >(logger -t $(basename $0))) 2>&1
 
-if [[ -d /opt/puppetlabs ]]; then
+if [[ -x /opt/puppetlabs/bin/puppet ]]; then
   # Debian-esque installed puppet from puppetlabs deb release
   readonly PUPPET="/opt/puppetlabs/bin/puppet"
   readonly LIBRARIAN_PUPPET="/opt/puppetlabs/puppet/bin/librarian-puppet"
   export PATH=/opt/puppetlabs/bin:$PATH
-elif [[ -d /opt/local ]]; then
+elif [[ -x /opt/local/bin/puppet ]]; then
   # SmartOS-esque installed puppet from gem under /opt/local
   readonly PUPPET="/opt/local/bin/puppet"
   readonly LIBRARIAN_PUPPET="/opt/local/bin/librarian-puppet"
