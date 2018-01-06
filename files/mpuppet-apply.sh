@@ -11,7 +11,7 @@ set -o nounset
 set -o pipefail
 set -o noclobber
 
-exec 1> >(logger -s -t "$(basename "$0")") 2>&1
+exec 1>| >(tee >(logger -t $(basename $0))) 2>&1
 
 readonly PUPPET_DIR="/etc/puppetlabs/code/environments/production"
 readonly PUPPET="/opt/puppetlabs/bin/puppet"

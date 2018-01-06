@@ -11,7 +11,7 @@ set -o nounset
 set -o pipefail
 set -o noclobber
 
-exec 1> >(logger -s -t "$(basename "$0")") 2>&1
+exec 1> >(tee >(logger -t $(basename $0))) 2>&1
 
 # Find the directory we are located in
 readonly BINDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
