@@ -13,11 +13,23 @@ set -o noclobber
 
 exec 1>| >(tee >(logger -t $(basename $0))) 2>&1
 
+if [[ -d /opt/puppetlabs ]]; then
+  # Debian-esque installed puppet from puppetlabs deb release
+  readonly PUPPET="/opt/puppetlabs/bin/puppet"
+  readonly LIBRARIAN_PUPPET="/opt/puppetlabs/puppet/bin/librarian-puppet"
+  export PATH=/opt/puppetlabs/bin:$PATH
+elif [[ -d /opt/local ]]; then
+  # SmartOS-esque installed puppet from gem under /opt/local
+  readonly PUPPET="/opt/local/bin/puppet"
+  readonly LIBRARIAN_PUPPET="/opt/local/bin/librarian-puppet"
+else
+  # Something installed puppet from gem under /usr/local
+  readonly PUPPET="/usr/local/bin/puppet"
+  readonly LIBRARIAN_PUPPET="/usr/local/puppet/bin/librarian-puppet"
+fi
+
 readonly PUPPET_DIR="/etc/puppetlabs/code/environments/production"
-readonly PUPPET="/opt/puppetlabs/bin/puppet"
 
-export PATH=/opt/puppetlabs/bin:$PATH
-
-(cd ${PUPPET_DIR}; /opt/puppetlabs/puppet/bin/librarian-puppet install)
+(cd ${PUPPET_DIR}; $LIBRARIAN_PUPPET install)
 
 $PUPPET apply "$@" "$PUPPET_DIR/manifests"
